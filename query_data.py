@@ -10,8 +10,7 @@ import os
 from huggingface_hub import login
 
 # TODO: change your api key (or add more), if you using the model requires credential (hugging face)
-# os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_API_KEY"
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_API_KEY"
 login(token=os.environ["HUGGINGFACEHUB_API_TOKEN"])
 
 CHROMA_PATH = "chroma"
