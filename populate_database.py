@@ -1,30 +1,38 @@
 import argparse
 import os
 import shutil
-from langchain.document_loaders.pdf import PyPDFDirectoryLoader
+from langchain_community.document_loaders.pdf import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
 from get_embedding_function import get_embedding_function
-from langchain.vectorstores.chroma import Chroma
-
+from langchain_community.vectorstores.chroma import Chroma
+# from langchain_chroma import Chroma
 
 CHROMA_PATH = "chroma"
-DATA_PATH = "data"
+DATA_PATH = "../../../Downloads/lab/paper/CEC_2024_Proceedings/papers"
+# DATA_PATH = "data"
 
 
 def main():
 
-    # Check if the database should be cleared (using the --clear flag).
+    # Check if the database should be cleared (using the --reset flag).
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
     args = parser.parse_args()
     if args.reset:
         print("✨ Clearing Database")
         clear_database()
+        return
 
     # Create (or update) the data store.
     documents = load_documents()
+    
     chunks = split_documents(documents)
+
+    # Check the information of the chunks produced by the text splitter
+    # for i, chunk in enumerate(chunks):
+    #     print(f"Chunk {i+1} (Size: {len(chunk.page_content)}):\n{chunk.page_content}\n")
+    
     add_to_chroma(chunks)
 
 
@@ -55,7 +63,7 @@ def add_to_chroma(chunks: list[Document]):
     # Add or Update the documents.
     existing_items = db.get(include=[])  # IDs are always included by default
     existing_ids = set(existing_items["ids"])
-    print(f"Number of existing documents in DB: {len(existing_ids)}")
+    print(f"Number of existing documents in DB: {len(existing_ids)}") 
 
     # Only add documents that don't exist in the DB.
     new_chunks = []
@@ -67,7 +75,7 @@ def add_to_chroma(chunks: list[Document]):
         print(f"👉 Adding new documents: {len(new_chunks)}")
         new_chunk_ids = [chunk.metadata["id"] for chunk in new_chunks]
         db.add_documents(new_chunks, ids=new_chunk_ids)
-        db.persist()
+        db.persist() # (from langchain_community.vectorstores.chroma import Chroma)
     else:
         print("✅ No new documents to add")
 
