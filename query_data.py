@@ -14,7 +14,7 @@ os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_API_KEY"
 login(token=os.environ["HUGGINGFACEHUB_API_TOKEN"])
 
 CHROMA_PATH = "chroma"
-CACHE_DIR = "./model_cache"
+CACHE_DIR = "model_cache"
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:

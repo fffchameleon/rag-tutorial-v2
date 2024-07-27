@@ -9,7 +9,7 @@ from langchain_community.vectorstores.chroma import Chroma
 # from langchain_chroma import Chroma
 
 CHROMA_PATH = "chroma"
-DATA_PATH = "../../../Downloads/lab/paper/CEC_2024_Proceedings/papers"
+DATA_PATH = "YOUR_DATA_PATH" # TODO
 # DATA_PATH = "data"
 
 
