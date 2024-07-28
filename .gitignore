@@ -3,3 +3,4 @@
 backup
 chroma
 .ipynb_checkpoints
+.env

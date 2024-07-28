@@ -9,8 +9,8 @@ from langchain_community.vectorstores.chroma import Chroma
 # from langchain_chroma import Chroma
 
 CHROMA_PATH = "chroma"
-DATA_PATH = "YOUR_DATA_PATH" # TODO
-# DATA_PATH = "data"
+# DATA_PATH = "YOUR_DATA_PATH" # TODO
+DATA_PATH = "data"
 
 
 def main():
