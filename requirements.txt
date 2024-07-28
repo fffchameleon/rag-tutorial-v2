@@ -8,3 +8,5 @@ langchain-core
 transformers
 torchvision
 sentence_transformers
+langchain_chroma
+langchain_huggingface
