@@ -10,3 +10,4 @@ torchvision
 sentence_transformers
 langchain_chroma
 langchain_huggingface
+python-dotenv
